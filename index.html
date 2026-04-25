@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>時光記憶圖譜 - 我的程式種子</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden; /* 防止出現滾動條 */
+    }
+    main {
+      position: absolute; /* 將 main 元素定位在固定畫布上方 */
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex; /* 使用 Flexbox 進行佈局 */
+      background-color: transparent; /* 使 main 元素背景透明 */
+      z-index: 0; /* 確保 main 在畫布 (-1) 之上 */
+      pointer-events: none; /* 允許滑鼠事件穿透 main 元素，到達下方的畫布 */
+    }
+    /* 這個空的 div 將佔據螢幕左側 30% 的空間 */
+    #left-spacer {
+      width: 30vw;
+      height: 100vh;
+      background-color: transparent;
+    }
+    #content-container {
+      flex: 1; /* 佔據剩餘空間 (70%) */
+      background-color: transparent; /* 使 content-container 背景透明 */
+      pointer-events: auto; /* 允許滑鼠事件作用於 content-container 及其子元素 (iframe) */
+      display: flex; /* 使用 Flexbox 來置中 iframe */
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div id="left-spacer">
+    <!-- This div will contain the scrollable concept text -->
+    <div id="concept-text-scroll-area" style="
+      position: absolute;
+      overflow-y: auto;
+      visibility: hidden;
+      pointer-events: auto; /* Allow interaction with scrollbar */
+    "></div>
+  </div>
+  <div id="content-container">
+    <iframe id="exhibit-frame" src="about:blank" frameborder="0"></iframe>
+  </div>
+</main>
+  <script src="sketch.js"></script>
+</body>
+</html>
